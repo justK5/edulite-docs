@@ -1,0 +1,16 @@
+name: CI
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "**/*.md"
+      - ".editorconfig"
+      - ".github/**"
+      - "docs/**"
+  workflow_dispatch: {}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  phase0:
+    uses: justK5/edulite-ops/.github/workflows/ci-reusable.yml@main
